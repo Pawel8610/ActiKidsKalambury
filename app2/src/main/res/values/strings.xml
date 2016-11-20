@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ActiKids</string>
+    <string name="PREF_FILE">Ustawienia</string>
+    <string name="facebook_app_id">xxxxxxxxx</string>
+    <integer name="com_vk_sdk_AppId">xxxxxxxxxxxxxxxxxxxx</integer>
+    <!--string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string-->
+
+    <string name="banner_ad_AppID">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_main">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_share">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_settings">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_selectLevel">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_game">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_help">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_final">xxxxxxxxxxxxxxxxxxxx</string>
+
+    <string name="NextTask">Next task.</string>
+    <string name="PreviousTask">Previous task.</string>
+    <string name="ThereIsNoSavedGame">There is no saved game.</string>
+    <string name="ExitGamee">Exit</string>
+    <string name="ExitGamee2">Do you really want to exit the game?</string>
+    <string name="ExitGame">Tap again to exit</string>
+    <string name="ExitGame2">Save Your game before exit or tap again to exit the game without saving</string>
+    <string name="ReturnToGame">Return to the game</string>
+    <string name="FirstExposeCard">Uncover the picture first.</string>
+    <string name="GameSaved">Game is saved.</string>
+    <string name="SettingsSaved">Settings are saved.</string>
+    <string name="CannotSaveStartedGame">You can not save the game before start.</string>
+    <string name="EndGame">Game over</string>
+    <string name="EnableNet">Turn on Wifi or Internet from your services provider.</string>
+    <string name="ReaminderSettingsSave">Tap Save button to apply new settings.</string>
+</resources>

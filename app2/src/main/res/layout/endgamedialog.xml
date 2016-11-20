@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#3fd2ed"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView30"
+        android:adjustViewBounds="true"
+        android:maxHeight="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/share" />
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#e64d4d"
+        android:textSize="18dp"
+        android:text="30/30"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/imageView24"
+        android:layout_alignStart="@+id/imageView24"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp" />
+
+    <!--com.facebook.share.widget.LikeView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Polub nas"
+        android:id="@+id/like_view"
+        android:contentDescription="@string/com_facebook_like_button_liked"
+        android:layout_below="@+id/Button02"
+        android:layout_centerHorizontal="true" /-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView23"
+        android:adjustViewBounds="true"
+        android:maxHeight="50dp"
+        android:src="@drawable/sharepack1"
+        android:layout_alignTop="@+id/imageView24"
+        android:layout_marginLeft="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView24"
+        android:adjustViewBounds="true"
+        android:maxHeight="50dp"
+        android:src="@drawable/sharepack2"
+        android:layout_below="@+id/imageView31"
+        android:layout_above="@+id/ad"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView25"
+        android:adjustViewBounds="true"
+        android:maxHeight="50dp"
+        android:src="@drawable/sharepack3"
+        android:layout_alignTop="@+id/imageView24"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView31"
+        android:src="@drawable/share2"
+        android:layout_below="@+id/imageView32"
+        android:adjustViewBounds="true"
+        android:maxHeight="50dp"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView32"
+        android:src="@drawable/share_vk"
+        android:maxHeight="50dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@+id/imageView36"
+        android:layout_toRightOf="@+id/imageView24"
+        android:layout_toEndOf="@+id/imageView24" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView33"
+        android:src="@drawable/share_fb"
+        android:maxHeight="50dp"
+        android:adjustViewBounds="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/imageView34"
+        android:layout_toRightOf="@+id/imageView34"
+        android:layout_toEndOf="@+id/imageView34" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView34"
+        android:src="@drawable/share_yt"
+        android:maxHeight="50dp"
+        android:adjustViewBounds="true"
+        android:layout_above="@+id/imageView31"
+        android:layout_alignLeft="@+id/imageView35"
+        android:layout_alignStart="@+id/imageView35" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView35"
+        android:src="@drawable/share_gplay"
+        android:maxHeight="40dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@+id/imageView30"
+        android:layout_toLeftOf="@+id/imageView36"
+        android:layout_toStartOf="@+id/imageView36"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView36"
+        android:maxHeight="50dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/shareadd"
+        android:layout_alignTop="@+id/imageView35"
+        android:layout_alignRight="@+id/imageView30"
+        android:layout_alignEnd="@+id/imageView30"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id_share" />
+
+</RelativeLayout>

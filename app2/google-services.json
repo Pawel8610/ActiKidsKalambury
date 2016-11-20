@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "43979776217",
+    "firebase_url": "https://admob-app-id-9294315929.firebaseio.com",
+    "project_id": "admob-app-id-9294315929",
+    "storage_bucket": "admob-app-id-9294315929.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43979776217:android:6c1168564a47ee2f",
+        "android_client_info": {
+          "package_name": "com.fgamesteam.beta1.MiniActiViti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43979776217-i2cpcfse13rjm5g7gts7qngldgdf47vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuq9nHVge2OuQCWvFOpRAK2g1V02w5Ofw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43979776217:android:9ddccac102ef378d",
+        "android_client_info": {
+          "package_name": "com.fgamesteam.free1.actikids"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43979776217-i2cpcfse13rjm5g7gts7qngldgdf47vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuq9nHVge2OuQCWvFOpRAK2g1V02w5Ofw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

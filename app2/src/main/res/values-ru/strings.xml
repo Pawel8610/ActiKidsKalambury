@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">ActiKids</string>
+    <string name="PREF_FILE">Ustawienia</string>
+    <string name="facebook_app_id">xxxxxxxxxxxxxxxx</string>
+    <integer name="com_vk_sdk_AppId">xxxxxxxxxxxxxxxx</integer>
+    <!--string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string-->
+
+    <string name="banner_ad_AppID">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_main">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_share">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_settings">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_selectLevel">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_game">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_help">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_final">xxxxxxxxxxxxxxxxxxxx</string>
+
+    <string name="NextTask">Определено следующее задание.</string> 
+  <string name="PreviousTask">Вернулись к предыдущему заданию.</string> 
+  <string name="ThereIsNoSavedGame">Для этого уровня нет сохранённой игры.</string> 
+  <string name="ExitGamee">Выход из игры.</string> 
+  <string name="ExitGamee2">Вы действительно хотите выйти из игры?</string> 
+  <string name="ExitGame">Нажмите ещё раз чтобы выйти.</string> 
+  <string name="ExitGame2">Сохраните игру перед выходом или Нажмите ещё раз чтобы выйти без сохранения.</string> 
+  <string name="ReturnToGame">Возвращение в игру.</string> 
+  <string name="FirstExposeCard">Сначала покажите картинку.</string> 
+  <string name="GameSaved">Игра сохранена.</string> 
+  <string name="SettingsSaved">Настройки сохранены.</string> 
+  <string name="CannotSaveStartedGame">Нельзя сохранить не начатую игру.</string> 
+  <string name="EndGame">Конец игры.</string> 
+  <string name="EnableNet">Включите Wi-Fi или Интернет от Вашего провайдера.</string>
+  <string name="ReaminderSettingsSave">Сохраните новые настройки.</string>
+
+</resources>

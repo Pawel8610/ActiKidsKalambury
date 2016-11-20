@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ActiKids</string>
+    <string name="PREF_FILE">Ustawienia</string>
+    <string name="facebook_app_id">xxxxxxxxxxxxxxxx</string>
+    <integer name="com_vk_sdk_AppId">xxxxxxxxxxxxxxxx</integer>
+    <!--string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string-->
+
+    <string name="banner_ad_AppID">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_main">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_share">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_settings">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_selectLevel">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_game">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_help">xxxxxxxxxxxxxxxxxxxx</string>
+    <string name="banner_ad_unit_id_final">xxxxxxxxxxxxxxxxxxxx</string>
+
+    <string name="NextTask">Wylosowano następne zadanie.</string>
+    <string name="PreviousTask">Powrócono do poprzedniego zadania.</string>
+    <string name="ThereIsNoSavedGame">Dla tego poziomu nie zapisano gry.</string>
+    <string name="ExitGamee">Wyjście z gry.</string>
+    <string name="ExitGamee2">Czy na pewno chcesz wyjść z gry?</string>
+    <string name="ExitGame">Naciśnij jeszcze raz aby wyjść.</string>
+    <string name="ExitGame2">Zapisz grę przed wyjściem lub Nacisinij ponownie aby wyjść bez zapisu.</string>
+    <string name="ReturnToGame">Powrót do gry.</string>
+    <string name="FirstExposeCard">Najpierw zobacz obrazek.</string>
+    <string name="GameSaved">Gra zapisana.</string>
+    <string name="SettingsSaved">Zapisano ustawienia.</string>
+    <string name="CannotSaveStartedGame">Nie można zapisać nie rozpoczętej gry.</string>
+    <string name="EndGame">Koniec Gry.</string>
+    <string name="EnableNet">Włącz Wi-Fi lub Internet od operatora.</string>
+    <string name="ReaminderSettingsSave">Nacisnij przycisk Zapisz, aby zachować ustawienia.</string>
+</resources>

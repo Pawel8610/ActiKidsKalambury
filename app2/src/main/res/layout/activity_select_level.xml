@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    tools:context="com.fgamesteam.free1.actikids.selectLevel"
+    android:background="#3fd2ed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView13"
+        android:src="@drawable/levelscreen"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="10dp"
+
+        android:layout_centerHorizontal="true" />
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myTableLayout"
+        android:layout_below="@+id/imageView13"
+
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        >
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView26"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.33"
+                android:layout_column="0"
+                android:src="@drawable/levelscreen1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView14"
+                android:src="@drawable/level1new"
+                android:onClick="OpenGraA"
+                android:layout_column="1"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.60"
+                android:scaleType="fitCenter"
+                       />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView17"
+                android:src="@drawable/level1saved"
+                android:onClick="ContinueGraA"
+                android:layout_column="2"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.33"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                />
+       </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+              >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView27"
+                android:layout_column="0"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.33"
+                android:src="@drawable/levelscreen2" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView15"
+                android:src="@drawable/level2new"
+                android:onClick="OpenGraB"
+                android:layout_column="1"
+                android:scaleType="fitCenter"
+                android:layout_weight="0.60"
+                android:adjustViewBounds="true"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView18"
+                android:src="@drawable/level2saved"
+                android:onClick="ContinueGraB"
+                android:layout_column="2"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.33"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+
+                 />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+                   >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView28"
+                android:layout_weight="0.33"
+                android:adjustViewBounds="true"
+                android:layout_column="0"
+                android:scaleType="fitCenter"
+                android:src="@drawable/levelscreen3" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView16"
+                android:src="@drawable/level3new"
+                android:onClick="OpenGraC"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_column="1"
+                android:layout_weight="0.60"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView19"
+                android:src="@drawable/level3saved"
+                android:scaleType="fitCenter"
+                android:onClick="ContinueGraC"
+                android:layout_column="2"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.33"
+                android:layout_gravity="center"
+                 />
+        </TableRow>
+    </TableLayout>
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView39"
+        android:src="@drawable/levelscreen4_en"
+        android:layout_below="@+id/myTableLayout"
+        android:adjustViewBounds="true"
+         />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/banner"
+        android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
+        android:maxHeight="60dp"
+        android:layout_marginBottom="0dp"
+        android:alpha="0" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id_selectLevel" />
+</RelativeLayout>
