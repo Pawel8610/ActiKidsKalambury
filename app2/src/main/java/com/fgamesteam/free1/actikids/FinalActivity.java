@@ -60,7 +60,7 @@ public class FinalActivity extends Activity {
                 //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
-        try{  //wywalić src z pliku xmla po ułożeniu layouta!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        try{  
             if(Locale.getDefault().getLanguage().equals("pl")){
                 Picasso.with(this).load(R.drawable.finalscreen_pl).into(finalscreen);
                 Picasso.with(this).load(R.drawable.finalscreen2_pl).into(finalscreen2);}
@@ -75,7 +75,7 @@ public class FinalActivity extends Activity {
     }
 
     public void OpenGraA(View view) {
-        Gra.activityy.finish();//jeżeli ktoś kliknie przycisk dopiero zamyka grę, bo może się zdarzyć, że ktoś kliknie back
+        Gra.activityy.finish();
         android.content.Intent intentt = new android.content.Intent(this,Gra.class);
         String message="Poziom A";
         intentt.putExtra(MESSAGE_KEY_SELECT_LEVEL,message);
