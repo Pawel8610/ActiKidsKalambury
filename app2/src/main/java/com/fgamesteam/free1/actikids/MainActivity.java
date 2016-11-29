@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())//jeśli minie więcej niż TIME_INTERVAL, to warunek = false
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
         {
             super.onBackPressed();
             return;
@@ -211,7 +211,7 @@ private void VkPutImageScreenshootToWall(){
             }
             @Override
             public void attemptFailed(VKRequest request, int attemptNumber, int totalAttempts) {
-                //I don't really believe in progress
+                
             }
         });
     }
@@ -453,7 +453,7 @@ private void VkPutImageScreenshootToWall(){
         startActivity(Intent.createChooser(share, "Share link!"));
     }
 
-       public void OpenGraActivity(View view) {  //na chwilę otwieram gra activity aby tam otworzyć okno dialogowe  zwiększenia ilosci karteczek
+       public void OpenGraActivity(View view) {  //opening Gra activity to open dialog for increasing images count
         final android.content.Intent intenttt = new android.content.Intent(this, Gra.class);
         String message = "Increase";
         intenttt.putExtra(MESSAGE_KEY_INCREASE_DIALOG, message);
