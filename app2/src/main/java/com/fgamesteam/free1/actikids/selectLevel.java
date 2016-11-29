@@ -38,7 +38,7 @@ public final static String MESSAGE_KEY="com.example.pawel.myapplication2.message
                // .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
-        try{  //wywalić src z pliku xmla po ułożeniu layouta!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        try{  
             if(Locale.getDefault().getLanguage().equals("pl")){
                 Picasso.with(this).load(R.drawable.level1new_pl).into(level1new);
                 Picasso.with(this).load(R.drawable.level2new_pl).into(level2new);
