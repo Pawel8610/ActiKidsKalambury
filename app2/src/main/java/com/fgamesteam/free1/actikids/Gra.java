@@ -73,7 +73,7 @@ public class Gra extends Activity {
     public int[] previousTask = new int[2];
     public Integer LastImage = null;
     public Integer LastTask = null;
-    public Integer ActivityLeft1 =2;//aktywności do wykorzystania
+    public Integer ActivityLeft1 =2;//left activities to use
     public Integer ActivityLeft2 =2;
     public Integer ActivityLeft3 =2;
     public Integer ActivityLeft4 =2;
@@ -87,7 +87,7 @@ public class Gra extends Activity {
     public Integer DisableAlarmm=0;
     boolean Czystoperdziala = false;
     boolean CzystoperdzialaImage = false;
-    boolean CzyZapisanoGre=true;//aby przed rozpoczęciem gry jak kliknę back nie krzyczało że nie zapisane
+    boolean CzyZapisanoGre=true;//before starting game when i click back i dont want to get toast that game was not saved.
     MediaPlayer mp;
     MediaPlayer mp_zadan;
     int[] images;
@@ -234,7 +234,7 @@ public class Gra extends Activity {
                //     mImageView.setVisibility(View.VISIBLE);
        //              PokazObrazThread();
  //                   PokazObraz();
-                      if(FirstFrame.getDrawable()==null){ //aby nie wykonywać tego na pierwszym zdjęciu
+                      if(FirstFrame.getDrawable()==null){ //protecting onTouch on first image
 
                   //    Picasso.with(contexxt).load(R.drawable.przejsciowy).into(przejscioweFrame);
                           przejscioweFrame.setVisibility(View.VISIBLE);
@@ -249,9 +249,9 @@ public class Gra extends Activity {
                    //   przejscioweFrame.setVisibility(View.INVISIBLE);
                       UkryjprzejsciowyobrazThread();
                       stoperImage.cancel();
-                      if(CzystoperdzialaImage==true){//jeżeli stoper (odkrycia obrazu pośredniego) nie zdążył dolecieć do końca to wywołaj metodę PokazObraz - która w tym przypadku zakryje grę z powrorem protect visible (zakrycie obrazka po puszczeniu ekranu)
+                      if(CzystoperdzialaImage==true){//if timer (odkrycia obrazu pośredniego) does not end up call method PokazObraz - this method cover game by protect image
                      if(pokazobraz!=null){
-                     pokazobraz=null;}//w przypadku jeżeli szybko klikam to przerywam poprzednie zadanie
+                     pokazobraz=null;}
                     pokazobraz = new PokazObrazAsyncTask(mImageViewProtect,mImageView);
                     pokazobraz.execute();
                           CzystoperdzialaImage=false;}
@@ -273,11 +273,11 @@ public class Gra extends Activity {
                                 x2 = event.getX();
                                 float deltaX = x2 - x1;
                                 if (deltaX < -100) {
-                                    if (previousTask[0]>=0||previousTask[1]>=0) { //aby nie losowało na głównym obrazku startowym
-                                    LosujZadania(true);//następne ma być inne niż obecne
+                                    if (previousTask[0]>=0||previousTask[1]>=0) { //protecting random choosing on starting picture
+                                    LosujZadania(true);//if random next image must be another than present one 
                                     Toast.makeText(getApplicationContext(),R.string.NextTask, Toast.LENGTH_SHORT).show();}
                                 } else if (deltaX > 100) {
-                                    if (previousTask[0]>=0&&previousTask[1]>=0) { //aby po pierwszym losowaniu nie wywalić gry
+                                    if (previousTask[0]>=0&&previousTask[1]>=0) {
                                         zadanie.setImageResource(zadania[previousTask[0]]);
                                     Toast.makeText(getApplicationContext(), R.string.PreviousTask, Toast.LENGTH_SHORT).show();
                                         if(DisableSoundd==0)
@@ -304,8 +304,8 @@ public class Gra extends Activity {
             if (message.equals("level A continue")) {
                 TinyDB tinydb = new TinyDB(this);
                 Integer x = tinydb.getInt("Image");
-              if(x != null &&x!=0)  { //sprawdzam czy już coś jest zapisane - jeśli nie to Toast oraz finish - użytkownik nawet nie powinien zobaczyć okna gry
-                if (tinydb.getListInt("Pula").size() >= 0)//jeżeli wcześniej ktoś zapisze stan bez obrazka, to aby po kliknięciu graj dało się grać, a nie wczytało pustą tablicę puli
+              if(x != null &&x!=0)  { //checking savings- if there is nothing - finish and Toast
+                if (tinydb.getListInt("Pula").size() >= 0)
                 {
                     pula = tinydb.getListInt("Pula");
                 }
@@ -317,14 +317,14 @@ public class Gra extends Activity {
                     zadanie.setImageResource(zadania[tinydb.getInt("Zadanie")]);
                 }
                 if(mImageView.getDrawable()!=null) {
-                    FirstFrame.setVisibility(View.GONE);//tylko dla warunku w metodzie graj, abym nie mógł jej kliknąć jeśli nic nie odsłoniłem
-                    FirstFrame.setImageDrawable(null);//aby warunek został spełniony przy dotknięciu (brak FirstFrame) i stoper zadziałał
+                    FirstFrame.setVisibility(View.GONE);//this is use in method graj to protect press play before showing card (image)
+                    FirstFrame.setImageDrawable(null);//used for stoper (lack of FirstFrame)
                 }
-                mImageViewProtect.setVisibility(View.VISIBLE);//zasłaniam na dzień dobry obrazek
+                mImageViewProtect.setVisibility(View.VISIBLE);//hidding image after pressing play
                 mImageView.setVisibility(View.INVISIBLE);
-                Czystoperdziala = false;//tylko dla warunku w metodzie graj, abym nie mógł jej kliknąć jeśli nic nie odsłoniłem
+                Czystoperdziala = false;////this is use in method graj to protect press play before showing card (image)
                 // SharedPreferences stanGry = Gra.this.getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
-            }else {Toast.makeText(getApplicationContext(),R.string.ThereIsNoSavedGame,Toast.LENGTH_SHORT).show();//jeśli dla danego poziomu nie zapisano gry to pokaż komunikat i zamknij panel gry (powrót do select level)
+            }else {Toast.makeText(getApplicationContext(),R.string.ThereIsNoSavedGame,Toast.LENGTH_SHORT).show();//if for particular level of game is no saved game show alert and finish game activiti (return to select level activiti)
               finish();}}
 
            else if (message.equals("level B continue")) {
@@ -332,7 +332,7 @@ public class Gra extends Activity {
                 TinyDB tinydb = new TinyDB(this);
                 Integer x = tinydb.getInt("Image2");
                 if(x != null &&x!=0)  {
-                if (tinydb.getListInt("Pula2").size() >= 0)//jeżeli wcześniej ktoś zapisze stan bez obrazka, to aby po kliknięciu graj dało się grać, a nie wczytało pustą tablicę puli, zero zostawiam, bo być może ktośś zapisał stan gry na ostatnim obrazku i pula =0
+                if (tinydb.getListInt("Pula2").size() >= 0)
                 {
                     pula = tinydb.getListInt("Pula2");
                 }
@@ -346,7 +346,7 @@ public class Gra extends Activity {
                 if(mImageView.getDrawable()!=null) {
                 FirstFrame.setVisibility(View.GONE);
                 FirstFrame.setImageDrawable(null);}
-                mImageViewProtect.setVisibility(View.VISIBLE);//zasłaniam na dzień dobry obrazek
+                mImageViewProtect.setVisibility(View.VISIBLE);
                 mImageView.setVisibility(View.INVISIBLE);
                 Czystoperdziala = false;
                 // SharedPreferences stanGry = Gra.this.getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
@@ -356,7 +356,7 @@ public class Gra extends Activity {
                 TinyDB tinydb = new TinyDB(this);
                 Integer x = tinydb.getInt("Image3");
                 if(x != null &&x!=0)  {
-                if (tinydb.getListInt("Pula3").size() >= 0)//jeżeli wcześniej ktoś zapisze stan bez obrazka, to aby po kliknięciu graj dało się grać, a nie wczytało pustą tablicę puli
+                if (tinydb.getListInt("Pula3").size() >= 0)
                 {
                     pula = tinydb.getListInt("Pula3");
                 }
@@ -370,7 +370,7 @@ public class Gra extends Activity {
                 if(mImageView.getDrawable()!=null) {
                 FirstFrame.setVisibility(View.GONE);
                 FirstFrame.setImageDrawable(null);}
-                mImageViewProtect.setVisibility(View.VISIBLE);//zasłaniam na dzień dobry obrazek
+                mImageViewProtect.setVisibility(View.VISIBLE);
                 mImageView.setVisibility(View.INVISIBLE);
                 Czystoperdziala = false;
                 // SharedPreferences stanGry = Gra.this.getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
@@ -397,45 +397,20 @@ try{
         ActivityLeft5 = x5; }
 }
 catch (Exception e){SaveLeftActivities(ActivityLeft1,ActivityLeft2,ActivityLeft3,ActivityLeft4,ActivityLeft5);}//stworzenie pierwszego klucza
-        //  Intent intent2 = getIntent();
-//zabezpieczam się, aby nie zmniejszyć sobie liczby karteczek, wczytując dotychczasową wartość z rejestru i potem porównując ją
-        try {
-            TinyDB tinydb2 = new TinyDB(this);
-            Integer x = tinydb2.getInt("ImageCount");
-            if(x != null && x >=5 ){
-              //  IncreaseImageCount(5);
-                PreviousImageCount =x;
-            }
-        } catch (Exception e) {
-            IncreaseImageCount(5);//stworzenie pierwszego klucza "ImageCount"
-            PreviousImageCount =5;
-        }//stworzenie klucza ImageCount i wczytanie mu liczby 3 w przypadku gdy jeszcze klucz nie powstał (pierwsze uruch. app)
-        try {
-            String message2 = intent.getStringExtra(MESSAGE_KEY_HELP);
-            if (message2.equals("Increase")) { //po jakieś aktywności zwiększam ilość obrazków na 5
-                images = new int[]{R.drawable.a1 ,R.drawable.a2 ,R.drawable.a3 ,R.drawable.a4 ,R.drawable.a5 ,R.drawable.a6 ,R.drawable.a7 ,R.drawable.a8 ,R.drawable.a9 ,R.drawable.a10 ,R.drawable.a11 ,R.drawable.a12 ,R.drawable.a13 ,R.drawable.a14 ,R.drawable.a15 ,R.drawable.a16 ,R.drawable.a17 ,R.drawable.a18 ,R.drawable.a19 ,R.drawable.a20 ,R.drawable.a21 ,R.drawable.a22 ,R.drawable.a23 ,R.drawable.a24 ,R.drawable.a25 ,R.drawable.a26 ,R.drawable.a27 ,R.drawable.a28 ,R.drawable.a29 ,R.drawable.a30};
-                IncreaseImageCount(5);
-            }
-           else if (message2.equals("Increase2")) { //po jakieś aktywności zwiększam ilość obrazków na 7
-                images = new int[]{R.drawable.a1 ,R.drawable.a2 ,R.drawable.a3 ,R.drawable.a4 ,R.drawable.a5 ,R.drawable.a6 ,R.drawable.a7 ,R.drawable.a8 ,R.drawable.a9 ,R.drawable.a10 ,R.drawable.a11 ,R.drawable.a12 ,R.drawable.a13 ,R.drawable.a14 ,R.drawable.a15 ,R.drawable.a16 ,R.drawable.a17 ,R.drawable.a18 ,R.drawable.a19 ,R.drawable.a20 ,R.drawable.a21 ,R.drawable.a22 ,R.drawable.a23 ,R.drawable.a24 ,R.drawable.a25 ,R.drawable.a26 ,R.drawable.a27 ,R.drawable.a28 ,R.drawable.a29 ,R.drawable.a30};
-                IncreaseImageCount(7);
-            }
-        } catch (Exception e) {
-        }
-       // IncreaseImageCount(3);
-        try {
+        
+       try {
             TinyDB tinydb2 = new TinyDB(this);
             Integer y = tinydb2.getInt("ImageCount");
             if (y != null && y > PreviousImageCount) {
                 IncreaseImageCount(y);
                 ImageCount = tinydb2.getInt("ImageCount");
-            } else { //jeżeli przed chwilą wczytana do rejestru wartość y jest mniejsza od PreviousImageCount, to z powrotem wczytaj PreviousImageCount do rejestru - zabezpieczenie przed zmniejszeniem ilości karteczek
+            } else { //if value y is less than PreviousImageCount, read PreviousImageCount (protect against reducing images count)
                 IncreaseImageCount(PreviousImageCount);
                 ImageCount = tinydb2.getInt("ImageCount");
             }
         } catch (Exception e) {
             IncreaseImageCount(PreviousImageCount);
-        }//stworzenie klucza ImageCount i wczytanie mu liczby 3 w przypadku gdy jeszcze klucz nie powstał (pierwsze uruch. app)
+        }
         FillList();
 
          RefreshCounter();
@@ -451,12 +426,12 @@ catch (Exception e){SaveLeftActivities(ActivityLeft1,ActivityLeft2,ActivityLeft3
              {
                  DisableSoundd=x;
                  StoperCzas=y;
-                 Settings.StoperCzas=y/1000;//uaktualnienie zmiennej z klasy settings, która została zapisana w rejestrze na wypadek, jeżeli nie zmienimy czasu stopera i zapiszemy nie nadpisać defaultową wartością 30s - w klasie settings jest ona updatowana dopiero po zmianie położenia suwaka seekBara
+                 Settings.StoperCzas=y/1000;//updating timer
                  DisableAlarmm=z;
              }
-                //zapis ustawień
+                //savings settings
              String message3 = intent.getStringExtra(MESSAGE_KEY_SETTINGS);
-             if(message3!=null&&message3.length()>1) {  //jeśli nie jest string pusty i jest dłuższy niż 1 znak
+             if(message3!=null&&message3.length()>1) {  //if string in not null and lengther than 1
                  SharedPreferences stanGry = Gra.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
                  SharedPreferences.Editor edytor = stanGry.edit();
 
@@ -470,21 +445,21 @@ catch (Exception e){SaveLeftActivities(ActivityLeft1,ActivityLeft2,ActivityLeft3
                  edytor.commit();
                  finish();
              }
-             Integer StoperCzasWsec=StoperCzas/1000;//dodawanie 0 wiodącego jeśli stoper ma mniej niż 10s
+             Integer StoperCzasWsec=StoperCzas/1000;//adding leading 0
              String stoperrrczas="";
              if(StoperCzasWsec.toString().length()==1)
              {  stoperrrczas="0"+StoperCzasWsec.toString();}
              else
              {stoperrrczas=StoperCzasWsec.toString();}
              stoper.setText(stoperrrczas+"s");
-             stoperr = new Stoper(StoperCzas, 1000);//30s co 1s
+             stoperr = new Stoper(StoperCzas, 1000);//30s every 1s
 
              if(message3.equals("s"))
              {
                //   Settings.DisableSoundd=DisableSoundd;
               //   Settings.StoperCzas=StoperCzas;
                  //ustawienie kontrolek z panelu Settings:
-                 Settings.IleStoper.setProgress((StoperCzas/1000)-5);//wcześniej było +5
+                 Settings.IleStoper.setProgress((StoperCzas/1000)-5);
                  Settings.Licznik.setText(String.valueOf(StoperCzas/1000+"s"));
                  if(DisableSoundd==0)
                  {//Settings.DisableSound.setChecked(false);
@@ -507,7 +482,7 @@ catch (Exception e){SaveLeftActivities(ActivityLeft1,ActivityLeft2,ActivityLeft3
          }
          catch (Exception e) {  }
 try{
-         String message3 = intent.getStringExtra(MESSAGE_KEY_INCREASE_DIALOG);//jeśli na głównym ekranie klikam zwiększ ilość karteczek, to po odpaleniu załadowaniu klasy Gra wywołaj okno dialogowe z opcjami zwiększenia il. kart.
+         String message3 = intent.getStringExtra(MESSAGE_KEY_INCREASE_DIALOG);//if on main activity i click button to increase images count
          if (message3.equals("Increase"))
          {images = new int[]{R.drawable.a1 ,R.drawable.a2 ,R.drawable.a3 ,R.drawable.a4 ,R.drawable.a5 ,R.drawable.a6 ,R.drawable.a7 ,R.drawable.a8 ,R.drawable.a9 ,R.drawable.a10 ,R.drawable.a11 ,R.drawable.a12 ,R.drawable.a13 ,R.drawable.a14 ,R.drawable.a15 ,R.drawable.a16 ,R.drawable.a17 ,R.drawable.a18 ,R.drawable.a19 ,R.drawable.a20 ,R.drawable.a21 ,R.drawable.a22 ,R.drawable.a23 ,R.drawable.a24 ,R.drawable.a25 ,R.drawable.a26 ,R.drawable.a27 ,R.drawable.a28 ,R.drawable.a29 ,R.drawable.a30};
              DialogEndGame(true);}}
@@ -521,7 +496,7 @@ catch (Exception e){}
     @Override
     protected void onPause() {
         super.onPause();
-      //  stoperr.cancel(); //to komentuje bo jeśli ktoś zadzwoni to skasuje mi się stoper
+      //  stoperr.cancel(); //finally i comment this because i dont want to interrupt stoper count down after f.e. incoming call
     }
     @Override
     protected void onStop() {
@@ -531,8 +506,8 @@ catch (Exception e){}
     @Override
     public void onBackPressed()
     {
-        if(CzyZapisanoGre==false) {//jeżeli gry nie zapisano to prośba o ponowne naciśnięcie back i przypomnienie oże niezapisano
-            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())//jeśli minie więcej niż TIME_INTERVAL, to warunek = false
+        if(CzyZapisanoGre==false) {//if game was not saved please again back button to exit with info
+            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
             {
                 super.onBackPressed();
                 stoperr.cancel();
@@ -543,7 +518,7 @@ catch (Exception e){}
             mBackPressed = System.currentTimeMillis();
         }
         else{
-            super.onBackPressed();//jeśli zapisano to juz po jedym kliknięciu back wychodzi z gry
+            super.onBackPressed();//if game was saved just end this one 
             stoperr.cancel();
             return;}
     }
@@ -599,7 +574,7 @@ catch (Exception e){}
         super.onConfigurationChanged(newConfig);
     }
     public void FillList() {
-        if(pula.size()==0){//jeżeli pula jest pusta (nie wczytano z opcji kontynuacji gry, to wczytaj pełną pulę) jest to pula nie wykorzystanych obrazków
+        if(pula.size()==0){//if pula list is empty fill this one (pula - list with not used images so far)
         for (Integer i = 1; i <= ImageCount; i++) {
             pula.add(i);
         }}
@@ -620,7 +595,7 @@ catch (Exception e){}
         if(previousTask[0]<0&&previousTask[1]<0)
         {previousTask[1]=i;}
         else {
-            previousTask[0] = previousTask[1];//chcę pamiętać poprzednie zadanie
+            previousTask[0] = previousTask[1];//i want to know previous task
         previousTask[1] = i; }
             if(DisableSoundd==0)
             {play_zadanie(i);}
@@ -681,18 +656,18 @@ catch (Exception e){}
             if (FirstFrame.getVisibility() == View.VISIBLE) {
                 FirstFrame.setVisibility(View.GONE);
                 Czystoperdziala = true;
-                FirstFrame.setImageDrawable(null);//dla wydajności czyszczę pamięć
+                FirstFrame.setImageDrawable(null);
                 }
             mImageViewProtect.setVisibility(View.VISIBLE);
             mImageView.setVisibility(View.GONE);
 
-            if(Czystoperdziala == true&&FirstFrame.getDrawable()==null){ //jeżeli nie odkryję żadnej kart nie mogę klikać graj
+            if(Czystoperdziala == true&&FirstFrame.getDrawable()==null){ //if i dont show card i can not press play
 
             Random rnd = new Random();
             if (pula.size() != 0) {
                 Integer i = pula.get(rnd.nextInt(pula.size()));
                 LosujZadania(false);
-                CzyZapisanoGre=false;//jeśli kliknę graj zmieniam flagę, aby przy wyjściu przypomniało o zapisanie;
+                CzyZapisanoGre=false;
               //  mImageView.setImageResource(images[i - 1]);
               //  mImageView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), images[i - 1], 1080, 1080));
          //       if(task!=null){
@@ -701,8 +676,8 @@ catch (Exception e){}
          //       task.execute(images[i - 1]);
           //      task=null;
                 Picasso.with(this).load(images[i - 1]).into(mImageView);
-                LastImage = i;//zapisuje ostatni obrazek, aby przy kontynuacji gry go pokazać
-                pula.remove(i);//usuwam go z puli do wylosowania
+                LastImage = i;//i need to continue game later
+                pula.remove(i);//removing image from list with unused images
             } else {
                 // msbox("Koniec Gry", "Więcej? Kup wersję PRO.");
                 if(ImageCount==30)
@@ -722,7 +697,7 @@ catch (Exception e){}
             //  }
             // mImageView.setImageResource(R.drawable.p1);
             RefreshCounter();
-            Integer StoperCzasWsec=StoperCzas/1000;//dodawanie 0 wiodącego jeśli stoper ma mniej niż 10s
+            Integer StoperCzasWsec=StoperCzas/1000;//adding leading 0
             String stoperrrczas="";
             if(StoperCzasWsec.toString().length()==1)
             {  stoperrrczas="0"+StoperCzasWsec.toString();}
@@ -731,7 +706,7 @@ catch (Exception e){}
             stoper.setText(stoperrrczas+"s");
             Czystoperdziala = false;
             stoperr.cancel();
-            graj.clearAnimation();//usunięcie animacji z przycisku graj
+            graj.clearAnimation();//remove animation from play button
         }
         catch(Exception e){Toast.makeText(getApplicationContext(),"Problem with Losuj"+ e.toString(), Toast.LENGTH_SHORT).show();}
     }
@@ -888,12 +863,12 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
         public void onFinish() {
             try {
                 if(pokazobraz!=null){
-                    pokazobraz=null;}//w przypadku jeżeli szybko klikam to przerywam poprzednie zadanie
+                    pokazobraz=null;}
                 pokazobraz = new PokazObrazAsyncTask(mImageViewProtect,mImageView);
-                pokazobraz.execute(); //odkrycie obrazka gry
+                pokazobraz.execute(); //showing image
 
-                if(Czystoperdziala==false&&FirstFrame.getDrawable()==null)//aby uniknąć odpalenia stopera na tym obrazku początkowym
-                {stoperr.start();//uruchomienie stopera głównego 30s
+                if(Czystoperdziala==false&&FirstFrame.getDrawable()==null)//to avoid start stoper on protect image
+                {stoperr.start();
                     Czystoperdziala=true;
                 }
                 CzystoperdzialaImage=true;
@@ -934,7 +909,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
              //grafika statyczna
              final ImageView Share = (ImageView) dialog.findViewById(R.id.imageView30);
              final ImageView Share2 = (ImageView) dialog.findViewById(R.id.imageView31);
-             try{  //wywalić src z pliku xmla po ułożeniu layouta!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+             try{ 
                  if(Locale.getDefault().getLanguage().equals("pl")){
                      Picasso.with(contexxt).load(R.drawable.share_pl).into(Share);
                      Picasso.with(contexxt).load(R.drawable.share2_pl).into(Share2);}
@@ -951,7 +926,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
        // text.setText(R.string.EndGameDialog);
              text.setText(ImageCount.toString()+"/30");//licznik total
 
-            //sposób na metodę wewnętrzną, uruchamiam odświeżenie licznika w nowym wątku bo chcę opóźnić jego odświeżenie
+            //delibarating delayed refreshing counter (because i dont want to use Facebook API to checking if user really like my profile :))
                  class Refresh {
                 private void RefreshDialogcounter() {
                     Thread mythread = new Thread() {
@@ -978,19 +953,19 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
              btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//po każdym kliknięciu musi powstać nowy obiekt ponieważ ktoś może właczyć net w czasie życia dialog
+                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//to avoid problem, when user switch on internet during showing dialog
                 final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
                 if (activeNetwork != null && activeNetwork.isConnected()) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/ActiKidsGame"));
                 startActivity(browserIntent);
-           if(Gra.this.ActivityLeft1==2&&ImageCount+5<=images.length){ //zabezpieczam się, aby nie zwiększyć liczby karteczek poza ilość w tablicy obrazków
+           if(Gra.this.ActivityLeft1==2&&ImageCount+5<=images.length){ //protecting against increasing image count over my array images.
                Gra.this.SaveLeftActivities(1,0,0,0,0);
                Gra.this.IncreaseImageCount(ImageCount+5);
                Integer PreviousImageCount=Gra.this.ImageCount;
-               Gra.this.ImageCount=PreviousImageCount+5;//zwiększenie ilości obrazków o 1
+               Gra.this.ImageCount=PreviousImageCount+5;//increasing images count +5
                for (int i=PreviousImageCount+1; i <= Gra.this.ImageCount; i++) {
                    pula.add(i);
-                   Temppula.add(i);//dodanie nowej puli także dla zapisanych gier dla 3 poziomów
+                   Temppula.add(i);//adding new images to pula list for saved games too
                    Temppula2.add(i);
                    Temppula3.add(i);}
                tinydb.putListInt("Pula", Temppula);
@@ -999,7 +974,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
                edytor.commit();
 
                refr.RefreshDialogcounter();
-               RefreshCounter();//uaktualnienie licznika
+               RefreshCounter();
 
                ActivityLeft1=1;
                  }
@@ -1011,7 +986,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
              btnVotePlayStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//po każdym kliknięciu musi powstać nowy obiekt ponieważ ktoś może właczyć net w czasie życia dialog
+                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
                 if (activeNetwork != null && activeNetwork.isConnected()) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.fgamesteam.free1.actikids"));
@@ -1023,15 +998,15 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
                     Gra.this.ImageCount=PreviousImageCount+5;
                     for (int i=PreviousImageCount+1; i <= Gra.this.ImageCount; i++) {
                         pula.add(i);
-                        Temppula.add(i);//dodanie nowej puli także dla zapisanych gier dla 3 poziomów
+                        Temppula.add(i);
                         Temppula2.add(i);
                         Temppula3.add(i);}
                     tinydb.putListInt("Pula", Temppula);
                     tinydb.putListInt("Pula2", Temppula2);
                     tinydb.putListInt("Pula3", Temppula3);
                     edytor.commit();
-                    RefreshCounter();//uaktualnienie licznika
-                    refr.RefreshDialogcounter();//i drugiego
+                    RefreshCounter();
+                    refr.RefreshDialogcounter();
                     ActivityLeft2=1;
                     }
                 } else {Toast.makeText(getApplicationContext(), R.string.EnableNet, Toast.LENGTH_SHORT).show();}
@@ -1059,7 +1034,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
         btnVK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//po każdym kliknięciu musi powstać nowy obiekt ponieważ ktoś może właczyć net w czasie życia dialog
+                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
                 if (activeNetwork != null && activeNetwork.isConnected()) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.com/club129282319"));
@@ -1072,7 +1047,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
                     Gra.this.ImageCount=PreviousImageCount+5;
                     for (int i=PreviousImageCount+1; i <= Gra.this.ImageCount; i++) {
                         pula.add(i);
-                        Temppula.add(i);//dodanie nowej puli także dla zapisanych gier dla 3 poziomów
+                        Temppula.add(i);
                         Temppula2.add(i);
                         Temppula3.add(i);}
                     tinydb.putListInt("Pula", Temppula);
@@ -1091,7 +1066,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
         btnLikeYT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//po każdym kliknięciu musi powstać nowy obiekt ponieważ ktoś może właczyć net w czasie życia dialog
+                final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
                 if (activeNetwork != null && activeNetwork.isConnected()) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=DjtWZmRRAcU"));
@@ -1103,14 +1078,14 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
                     Gra.this.ImageCount=PreviousImageCount+5;
                     for (int i=PreviousImageCount+1; i <= Gra.this.ImageCount; i++) {
                         pula.add(i);
-                        Temppula.add(i);//dodanie nowej puli także dla zapisanych gier dla 3 poziomów
+                        Temppula.add(i);
                         Temppula2.add(i);
                         Temppula3.add(i);}
                     tinydb.putListInt("Pula", Temppula);
                     tinydb.putListInt("Pula2", Temppula2);
                     tinydb.putListInt("Pula3", Temppula3);
                     edytor.commit();
-                    RefreshCounter();//uaktualnienie licznika
+                    RefreshCounter();
                     refr.RefreshDialogcounter();
                     ActivityLeft5=1;
                 }
@@ -1144,7 +1119,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
                  }
              });
 
-             dialog.setOnKeyListener(new Dialog.OnKeyListener() { //dodanie obsługi przycisku back - aby zamknął nie tylko dialog ale też Gra class
+             dialog.setOnKeyListener(new Dialog.OnKeyListener() { 
                  @Override
                  public boolean onKey(DialogInterface arg0, int keyCode, KeyEvent event) {
                      if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -1153,7 +1128,7 @@ public void SaveLeftActivities(int x1,int x2,int x3,int x4,int x5){
                              Gra.this.finish();
                              dialog.cancel();
                              }
-                         else{dialog.cancel();}//zwykłe zamknięcie okna
+                         else{dialog.cancel();}
                      }
                       return true;
                  }
