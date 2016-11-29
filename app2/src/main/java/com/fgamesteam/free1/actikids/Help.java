@@ -91,7 +91,7 @@ public class Help extends Activity {
     }
 
     public void  ZmienObrazek(View view){
-        if(CzyjuzZaladowano2obrazek==false)//opóźnienie załadowania drugiego obrazka
+        if(CzyjuzZaladowano2obrazek==false)//delay for loading second image
         { LoadImages();
             CzyjuzZaladowano2obrazek=true;
         }
@@ -151,7 +151,7 @@ else{pomoc.setVisibility(View.VISIBLE);
         });
         alert.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                // what ever you want to do with No option.
+                
             }
         });
         alert.show();    }
