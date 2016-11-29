@@ -58,7 +58,7 @@ public class Settings extends AppCompatActivity {
              //   .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
-        try{  //wywalić src z pliku xmla po ułożeniu layouta!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        try{ 
             if(Locale.getDefault().getLanguage().equals("pl")){
                 Picasso.with(this).load(R.drawable.settingsscreen0_pl).into(Settings0);
                 Picasso.with(this).load(R.drawable.settingsscreen1_pl).into(Settings1);}
@@ -72,7 +72,7 @@ public class Settings extends AppCompatActivity {
             Picasso.with(this).load(R.drawable.settingsscreen1).into(Settings1);}
 
 
-        //łączę się z panelem Gra, aby pobrać info o aktualnych ustawieniach i ustawić odpowiednio kontrolki:
+        //opening Gra activity to read info from register about actual settings
         android.content.Intent intentt = new android.content.Intent(this,Gra.class);
         String message="s";
         intentt.putExtra(MESSAGE_KEY_SETTINGS,message);
